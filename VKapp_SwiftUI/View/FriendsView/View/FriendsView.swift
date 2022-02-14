@@ -22,7 +22,9 @@ struct FriendsView: View {
     var body: some View {
         
         List(friends.sorted(by: { $0.lastName < $1.lastName})) { friend in
-            FriendViewCell(friend: friend)
+            NavigationLink(destination: FriendsImageCollectionView()) {
+                FriendViewCell(friend: friend)
+            }
         }
         .navigationBarTitle("Friends", displayMode: .inline)
     }
