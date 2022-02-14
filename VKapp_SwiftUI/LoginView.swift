@@ -13,6 +13,7 @@ struct LoginView: View {
    @State private var login = ""
    @State private var password = ""
    @State private var shouldShowLogo: Bool = true
+   @State private var showIncorrectCredentialsWarning = false
   
    private let keyboardIsOnPublisher = Publishers.Merge(
        NotificationCenter.default.publisher(for: UIResponder.keyboardWillChangeFrameNotification)
@@ -53,7 +54,7 @@ struct LoginView: View {
                        }
                    }.frame(maxWidth: 250)
                        .padding(.top, 50)
-                   Button(action: { print("Hello") }) {
+                   Button(action: verifyLogin) {
                        Text("Log in")
                    }.padding(.top, 50)
                    .padding(.bottom, 20)
@@ -67,8 +68,20 @@ struct LoginView: View {
            }
        }.onTapGesture {
            UIApplication.shared.endEditing()
-       }
+       }.alert(isPresented: $showIncorrectCredentialsWarning, content: {
+           Alert(title: Text("Error"),
+                 message: Text("Incorrent Login/Password was entered"))
+       })
    }
+    
+    private func verifyLogin() {
+        if login == "admin" && password == "123" {
+            print("Log in")
+        } else {
+            showIncorrectCredentialsWarning = true
+            password = ""
+        }
+    }
 }
 
 struct LoginView_Previews: PreviewProvider {
