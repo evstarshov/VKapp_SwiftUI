@@ -77,7 +77,7 @@ struct LoginView: View {
     }
     
     private func verifyLogin() {
-        if login == "admin" && password == "123" {
+        if login == "Admin" && password == "123" {
             print("Log in")
             isUserLoggedIn = true
         } else {

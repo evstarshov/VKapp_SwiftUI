@@ -16,7 +16,7 @@ struct CircleShadow: ViewModifier {
     
     func body(content: Content) -> some View {
         content
-            .frame(width: 80, height: 80)
+            .frame(width: 45, height: 45)
             .cornerRadius(100)
             .background(Circle()
                 .fill(Color.white)

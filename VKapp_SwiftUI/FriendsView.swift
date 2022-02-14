@@ -9,15 +9,22 @@ import SwiftUI
 
 
 struct FriendsView: View {
+    
+    @State private var friends: [FriendModel] = [
+    
+    FriendModel(firstName: "Марина", lastName: "Сергеева", imageName: "marina"),
+    FriendModel(firstName: "Татьяна", lastName: "Демидова", imageName: "tatiana"),
+    FriendModel(firstName: "Дарина", lastName: "Кузнецова", imageName: "darina"),
+    FriendModel(firstName: "Ольга", lastName: "Харитонова", imageName: "olga")
+    
+    ]
+    
     var body: some View {
 
-        HStack {
-            ImageBuilder{ Image("marina")
-            }
-            Text("Марина").fixedSize(horizontal: false, vertical: true).multilineTextAlignment(.center)
-            Text("Сергеева").fixedSize(horizontal: false, vertical: true).multilineTextAlignment(.center)
+        List(friends.sorted(by: { $0.lastName < $1.lastName})) { friend in
+            FriendViewCell(friend: friend)
         }
-        
+        .navigationBarTitle("Friends", displayMode: .inline)
     }
 }
 
