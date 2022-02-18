@@ -32,6 +32,10 @@
 		3AF9A84327BFB7E300AAE9BA /* GroupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AF9A84227BFB7E300AAE9BA /* GroupViewModel.swift */; };
 		3AF9A84527BFBA6A00AAE9BA /* GroupsAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AF9A84427BFBA6A00AAE9BA /* GroupsAPI.swift */; };
 		3AF9A84727BFBD2B00AAE9BA /* NewsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AF9A84627BFBD2B00AAE9BA /* NewsModel.swift */; };
+		3AF9A84A27BFBD9700AAE9BA /* NewsAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AF9A84927BFBD9700AAE9BA /* NewsAPI.swift */; };
+		3AF9A84D27BFBE4100AAE9BA /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = 3AF9A84C27BFBE4100AAE9BA /* SwiftyJSON */; };
+		3AF9A85027BFBE7F00AAE9BA /* NewsViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AF9A84F27BFBE7F00AAE9BA /* NewsViewCell.swift */; };
+		3AF9A85227BFBF7600AAE9BA /* NewsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AF9A85127BFBF7600AAE9BA /* NewsViewModel.swift */; };
 		3AFFC95127B5300B0057863C /* FriendsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AFFC95027B5300B0057863C /* FriendsView.swift */; };
 		3AFFC95327B539940057863C /* ViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AFFC95227B539940057863C /* ViewModifier.swift */; };
 		3AFFC95627B53ED50057863C /* ViewBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AFFC95527B53ED50057863C /* ViewBuilder.swift */; };
@@ -59,6 +63,9 @@
 		3AF9A84227BFB7E300AAE9BA /* GroupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupViewModel.swift; sourceTree = "<group>"; };
 		3AF9A84427BFBA6A00AAE9BA /* GroupsAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupsAPI.swift; sourceTree = "<group>"; };
 		3AF9A84627BFBD2B00AAE9BA /* NewsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsModel.swift; sourceTree = "<group>"; };
+		3AF9A84927BFBD9700AAE9BA /* NewsAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsAPI.swift; sourceTree = "<group>"; };
+		3AF9A84F27BFBE7F00AAE9BA /* NewsViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsViewCell.swift; sourceTree = "<group>"; };
+		3AF9A85127BFBF7600AAE9BA /* NewsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsViewModel.swift; sourceTree = "<group>"; };
 		3AFFC95027B5300B0057863C /* FriendsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsView.swift; sourceTree = "<group>"; };
 		3AFFC95227B539940057863C /* ViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModifier.swift; sourceTree = "<group>"; };
 		3AFFC95527B53ED50057863C /* ViewBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewBuilder.swift; sourceTree = "<group>"; };
@@ -71,6 +78,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3AF9A84027BFAA4700AAE9BA /* Kingfisher in Frameworks */,
+				3AF9A84D27BFBE4100AAE9BA /* SwiftyJSON in Frameworks */,
 				3A2918DA27BF889D007758A7 /* Alamofire in Frameworks */,
 				3A2918D327BF8158007758A7 /* SwiftKeychainWrapper in Frameworks */,
 				3A2918DD27BF899D007758A7 /* Realm in Frameworks */,
@@ -225,6 +233,7 @@
 		3A9266A527BA9D7900F1CDDF /* NewsView */ = {
 			isa = PBXGroup;
 			children = (
+				3AF9A84E27BFBE7100AAE9BA /* Cell */,
 				3A9266A727BA9D9400F1CDDF /* View */,
 			);
 			path = NewsView;
@@ -243,6 +252,7 @@
 			children = (
 				3AF9A83727BF8F0200AAE9BA /* FriendsAPI.swift */,
 				3AF9A84427BFBA6A00AAE9BA /* GroupsAPI.swift */,
+				3AF9A84927BFBD9700AAE9BA /* NewsAPI.swift */,
 			);
 			path = "vk-api";
 			sourceTree = "<group>";
@@ -250,18 +260,19 @@
 		3AF9A83A27BF95F400AAE9BA /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				3AF9A83B27BF961000AAE9BA /* FriendsViewModel */,
+				3AF9A83C27BF962600AAE9BA /* FriendsViewModel.swift */,
+				3AF9A84227BFB7E300AAE9BA /* GroupViewModel.swift */,
+				3AF9A85127BFBF7600AAE9BA /* NewsViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
 		};
-		3AF9A83B27BF961000AAE9BA /* FriendsViewModel */ = {
+		3AF9A84E27BFBE7100AAE9BA /* Cell */ = {
 			isa = PBXGroup;
 			children = (
-				3AF9A83C27BF962600AAE9BA /* FriendsViewModel.swift */,
-				3AF9A84227BFB7E300AAE9BA /* GroupViewModel.swift */,
+				3AF9A84F27BFBE7F00AAE9BA /* NewsViewCell.swift */,
 			);
-			path = FriendsViewModel;
+			path = Cell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -287,6 +298,7 @@
 				3A2918DC27BF899D007758A7 /* Realm */,
 				3A2918DE27BF899D007758A7 /* RealmSwift */,
 				3AF9A83F27BFAA4700AAE9BA /* Kingfisher */,
+				3AF9A84C27BFBE4100AAE9BA /* SwiftyJSON */,
 			);
 			productName = VKapp_SwiftUI;
 			productReference = 3A4C61F427AFD5AF004C9527 /* VKapp_SwiftUI.app */;
@@ -322,6 +334,7 @@
 				3A2918D827BF889D007758A7 /* XCRemoteSwiftPackageReference "Alamofire" */,
 				3A2918DB27BF899D007758A7 /* XCRemoteSwiftPackageReference "realm-swift" */,
 				3AF9A83E27BFAA4700AAE9BA /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				3AF9A84B27BFBE4100AAE9BA /* XCRemoteSwiftPackageReference "SwiftyJSON" */,
 			);
 			productRefGroup = 3A4C61F527AFD5AF004C9527 /* Products */;
 			projectDirPath = "";
@@ -351,15 +364,18 @@
 			files = (
 				3AF9A84727BFBD2B00AAE9BA /* NewsModel.swift in Sources */,
 				3A9266A227BA616800F1CDDF /* GroupModel.swift in Sources */,
+				3AF9A85027BFBE7F00AAE9BA /* NewsViewCell.swift in Sources */,
 				3AFFC95927B542540057863C /* GroupsView.swift in Sources */,
 				3A9266AE27BAA31000F1CDDF /* FriendsImageCollectionView.swift in Sources */,
 				3A92669627BA583200F1CDDF /* FriendViewCell.swift in Sources */,
 				3AFFC95127B5300B0057863C /* FriendsView.swift in Sources */,
+				3AF9A85227BFBF7600AAE9BA /* NewsViewModel.swift in Sources */,
 				3A2918D027BF80E1007758A7 /* Account.swift in Sources */,
 				3A4C61FA27AFD5AF004C9527 /* LoginView.swift in Sources */,
 				3A9266A027BA60CC00F1CDDF /* GroupsViewCell.swift in Sources */,
 				3AF9A84527BFBA6A00AAE9BA /* GroupsAPI.swift in Sources */,
 				3AF9A83D27BF962600AAE9BA /* FriendsViewModel.swift in Sources */,
+				3AF9A84A27BFBD9700AAE9BA /* NewsAPI.swift in Sources */,
 				3AF9A83827BF8F0200AAE9BA /* FriendsAPI.swift in Sources */,
 				3AF9A84327BFB7E300AAE9BA /* GroupViewModel.swift in Sources */,
 				3A4C61F827AFD5AF004C9527 /* VKapp_SwiftUIApp.swift in Sources */,
@@ -614,6 +630,14 @@
 				minimumVersion = 7.0.0;
 			};
 		};
+		3AF9A84B27BFBE4100AAE9BA /* XCRemoteSwiftPackageReference "SwiftyJSON" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SwiftyJSON/SwiftyJSON";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -646,6 +670,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 3AF9A83E27BFAA4700AAE9BA /* XCRemoteSwiftPackageReference "Kingfisher" */;
 			productName = Kingfisher;
+		};
+		3AF9A84C27BFBE4100AAE9BA /* SwiftyJSON */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3AF9A84B27BFBE4100AAE9BA /* XCRemoteSwiftPackageReference "SwiftyJSON" */;
+			productName = SwiftyJSON;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
