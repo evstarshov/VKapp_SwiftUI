@@ -14,7 +14,7 @@ struct ContainerView: View {
     var body: some View {
         NavigationView {
             HStack {
-                LoginView(isUserLoggedIn: $shouldShowMainView)
+                VKLoginWebView(isUserLoggedIn: $shouldShowMainView)
                 NavigationLink(destination: TabBarView(), isActive: $shouldShowMainView) {
                     EmptyView()
                 }

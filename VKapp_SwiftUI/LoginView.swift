@@ -6,89 +6,76 @@
 //
 
 import SwiftUI
-import Combine
+import WebKit
 
-struct LoginView: View {
+struct VKLoginWebView: UIViewRepresentable {
     
-    @State private var login = ""
-    @State private var password = ""
-    @State private var shouldShowLogo: Bool = true
-    @State private var showIncorrectCredentialsWarning = false
+    fileprivate let navigationDelegate = WebViewNavigationDelegate()
     
-    @Binding var isUserLoggedIn: Bool
-    
-    private let keyboardIsOnPublisher = Publishers.Merge(
-        NotificationCenter.default.publisher(for: UIResponder.keyboardWillChangeFrameNotification)
-            .map { _ in true },
-        NotificationCenter.default.publisher(for: UIResponder.keyboardWillHideNotification)
-            .map { _ in false }
-    )
-        .removeDuplicates()
-    
-    var body: some View {
-        ZStack {
-            GeometryReader { _ in
-                Image("background")
-                    .resizable()
-                    .edgesIgnoringSafeArea(.all)
-            }
-            ScrollView(showsIndicators: false) {
-                VStack {
-                    if shouldShowLogo {
-                        Text("VK authorization ")
-                            .font(.largeTitle)
-                            .padding(.top, 32)
-                    }
-                    VStack {
-                        HStack {
-                            Text("Login:")
-                            Spacer()
-                            TextField("", text: $login)
-                                .frame(maxWidth: 150)
-                                .textFieldStyle(RoundedBorderTextFieldStyle())
-                        }
-                        HStack {
-                            Text("Password:")
-                            Spacer()
-                            SecureField("", text: $password)
-                                .frame(maxWidth: 150)
-                                .textFieldStyle(RoundedBorderTextFieldStyle())
-                        }
-                    }.frame(maxWidth: 250)
-                        .padding(.top, 50)
-                    Button(action: verifyLogin) {
-                        Text("Log in")
-                    }.padding(.top, 50)
-                        .padding(.bottom, 20)
-                        .disabled(login.isEmpty || password.isEmpty)
-                }
-            }
-            .onReceive(keyboardIsOnPublisher) { isKeyboardOn in
-                withAnimation(Animation.easeInOut(duration: 0.5)) {
-                    self.shouldShowLogo = !isKeyboardOn
-                }
-            }
-        }.onTapGesture {
-            UIApplication.shared.endEditing()
-        }.alert(isPresented: $showIncorrectCredentialsWarning, content: {
-            Alert(title: Text("Error"),
-                  message: Text("Incorrent Login/Password was entered"))
-        })
+    func makeUIView(context: Context) -> WKWebView {
+        let webView = WKWebView()
+        webView.navigationDelegate = navigationDelegate
+        return webView
     }
     
-    private func verifyLogin() {
-        if login == "1" && password == "1" {
-            print("Log in")
-            isUserLoggedIn = true
-        } else {
-            showIncorrectCredentialsWarning = true
+    func updateUIView(_ uiView: WKWebView, context: Context) {
+        if let request = buildAuthRequest() {
+            uiView.load(request)
         }
-        password = ""
+    }
+    
+    private func buildAuthRequest() -> URLRequest? {
+        var components = URLComponents()
+        components.scheme = "https"
+        components.host = "oauth.vk.com"
+        components.path = "/authorize"
+        components.queryItems = [
+            URLQueryItem(name: "client_id", value: "6704883"),
+            URLQueryItem(name: "scope", value: "262150"),
+            URLQueryItem(name: "display", value: "mobile"),
+            URLQueryItem(name: "redirect_uri", value: "https://oauth.vk.com/blank.html"),
+            URLQueryItem(name: "response_type", value: "token"),
+            URLQueryItem(name: "v", value: "5.130")
+        ]
+        
+        return components.url.map { URLRequest(url: $0) }
     }
 }
 
-extension UIApplication {
-    func endEditing() {
-        sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+class WebViewNavigationDelegate: NSObject, WKNavigationDelegate {
+
+    func webView(_ webView: WKWebView, decidePolicyFor navigationResponse: WKNavigationResponse, decisionHandler: @escaping (WKNavigationResponsePolicy) -> Void) {
+        guard let url = navigationResponse.response.url,
+              url.path == "/blank.html",
+              let fragment = url.fragment else {
+            decisionHandler(.allow)
+            return
+        }
+        
+        let params = fragment
+            .components(separatedBy: "&")
+            .map { $0.components(separatedBy: "=") }
+            .reduce([String: String]()) { result, param in
+                var dict = result
+                let key = param[0]
+                let value = param[1]
+                dict[key] = value
+                
+                return dict
+            }
+        
+        guard let token = params["access_token"],
+              let userIdString = params["user_id"],
+              let _ = Int(userIdString)
+        else {
+            decisionHandler(.allow)
+            return
+        }
+        
+        Account.shared.token = token
+        Account.shared.userId = Int(userIdString) ?? 0
+        NotificationCenter.default.post(name: NSNotification.Name("vkTokenSaved"), object: self)
+        
+        decisionHandler(.cancel)
     }
 }
