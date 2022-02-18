@@ -17,7 +17,7 @@ struct ImageBuilder: View {
     var body: some View {
         content
             .resizable()
-            .frame(width: 100, height: 100)
+            .frame(width: 45, height: 45)
             .modifier(CircleShadow())
     }
 }
