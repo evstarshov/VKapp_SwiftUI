@@ -29,6 +29,8 @@
 		3AF9A83827BF8F0200AAE9BA /* FriendsAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AF9A83727BF8F0200AAE9BA /* FriendsAPI.swift */; };
 		3AF9A83D27BF962600AAE9BA /* FriendsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AF9A83C27BF962600AAE9BA /* FriendsViewModel.swift */; };
 		3AF9A84027BFAA4700AAE9BA /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 3AF9A83F27BFAA4700AAE9BA /* Kingfisher */; };
+		3AF9A84327BFB7E300AAE9BA /* GroupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AF9A84227BFB7E300AAE9BA /* GroupViewModel.swift */; };
+		3AF9A84527BFBA6A00AAE9BA /* GroupsAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AF9A84427BFBA6A00AAE9BA /* GroupsAPI.swift */; };
 		3AFFC95127B5300B0057863C /* FriendsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AFFC95027B5300B0057863C /* FriendsView.swift */; };
 		3AFFC95327B539940057863C /* ViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AFFC95227B539940057863C /* ViewModifier.swift */; };
 		3AFFC95627B53ED50057863C /* ViewBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AFFC95527B53ED50057863C /* ViewBuilder.swift */; };
@@ -53,6 +55,8 @@
 		3A9266AD27BAA31000F1CDDF /* FriendsImageCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsImageCollectionView.swift; sourceTree = "<group>"; };
 		3AF9A83727BF8F0200AAE9BA /* FriendsAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsAPI.swift; sourceTree = "<group>"; };
 		3AF9A83C27BF962600AAE9BA /* FriendsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsViewModel.swift; sourceTree = "<group>"; };
+		3AF9A84227BFB7E300AAE9BA /* GroupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupViewModel.swift; sourceTree = "<group>"; };
+		3AF9A84427BFBA6A00AAE9BA /* GroupsAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupsAPI.swift; sourceTree = "<group>"; };
 		3AFFC95027B5300B0057863C /* FriendsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsView.swift; sourceTree = "<group>"; };
 		3AFFC95227B539940057863C /* ViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModifier.swift; sourceTree = "<group>"; };
 		3AFFC95527B53ED50057863C /* ViewBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewBuilder.swift; sourceTree = "<group>"; };
@@ -235,6 +239,7 @@
 			isa = PBXGroup;
 			children = (
 				3AF9A83727BF8F0200AAE9BA /* FriendsAPI.swift */,
+				3AF9A84427BFBA6A00AAE9BA /* GroupsAPI.swift */,
 			);
 			path = "vk-api";
 			sourceTree = "<group>";
@@ -251,6 +256,7 @@
 			isa = PBXGroup;
 			children = (
 				3AF9A83C27BF962600AAE9BA /* FriendsViewModel.swift */,
+				3AF9A84227BFB7E300AAE9BA /* GroupViewModel.swift */,
 			);
 			path = FriendsViewModel;
 			sourceTree = "<group>";
@@ -348,8 +354,10 @@
 				3A2918D027BF80E1007758A7 /* Account.swift in Sources */,
 				3A4C61FA27AFD5AF004C9527 /* LoginView.swift in Sources */,
 				3A9266A027BA60CC00F1CDDF /* GroupsViewCell.swift in Sources */,
+				3AF9A84527BFBA6A00AAE9BA /* GroupsAPI.swift in Sources */,
 				3AF9A83D27BF962600AAE9BA /* FriendsViewModel.swift in Sources */,
 				3AF9A83827BF8F0200AAE9BA /* FriendsAPI.swift in Sources */,
+				3AF9A84327BFB7E300AAE9BA /* GroupViewModel.swift in Sources */,
 				3A4C61F827AFD5AF004C9527 /* VKapp_SwiftUIApp.swift in Sources */,
 				3A2918E227BF8AD6007758A7 /* FriendsDB.swift in Sources */,
 				3A9266A927BA9DBB00F1CDDF /* NewsView.swift in Sources */,

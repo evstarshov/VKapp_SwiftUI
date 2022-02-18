@@ -9,25 +9,19 @@ import SwiftUI
 
 struct GroupsView: View {
     
-    @State private var groups: [GroupModel] = [
-        
-        GroupModel(groupName: "Клуб любителей грустной жабы", groupImageName: "pepe"),
-        GroupModel(groupName: "Фейковые превью Максима Каца", groupImageName: "kac")
-        
-    ]
+    @ObservedObject var viewModel: GroupsViewModel
+    
+    init(viewModel: GroupsViewModel) {
+        self.viewModel = viewModel
+    }
     
     var body: some View {
         
-        List(groups.sorted(by: { $0.groupName < $1.groupName})) { group in
+        List(viewModel.groups) { group in
             GroupsViewCell(group: group)
-        }
+        }.onAppear(perform: viewModel.fetchGroups)
         .navigationBarTitle("Groups", displayMode: .inline)
     }
 }
 
-struct GroupsView_Previews: PreviewProvider {
-    static var previews: some View {
-        GroupsView()
-            .previewInterfaceOrientation(.portrait)
-    }
-}
+

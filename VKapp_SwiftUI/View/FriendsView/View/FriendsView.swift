@@ -12,8 +12,6 @@ struct FriendsView: View {
     
     @ObservedObject var viewModel: FriendsViewModel
     
-    let api = FriendsAPI()
-    
     init(viewModel: FriendsViewModel) {
         self.viewModel = viewModel
     }

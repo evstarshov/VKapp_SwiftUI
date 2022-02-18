@@ -11,6 +11,9 @@ struct TabBarView: View {
     
     let friend = FriendModel()
     let friendsApi = FriendsAPI()
+    let group = GroupModel()
+    let groupsApi = GroupsAPI()
+    
     @State private var selection = 3
     
     var body: some View {
@@ -18,7 +21,7 @@ struct TabBarView: View {
             FriendsView(viewModel: FriendsViewModel(friend: friend, friendService: self.friendsApi)).tabItem {
                 Text("Friends")
             }
-            GroupsView().tabItem {
+            GroupsView(viewModel: GroupsViewModel(group: group, groupsService: groupsApi)).tabItem {
                 Text("Groups")
             }
             NewsView().tabItem {
