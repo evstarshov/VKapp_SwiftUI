@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 struct GroupsViewCell: View {
     
@@ -13,7 +14,7 @@ struct GroupsViewCell: View {
     
     var body: some View {
         HStack {
-            ImageBuilder{ Image(group.groupImageName)
+            ImageBuilder{ KFImage(URL(string: group.groupImageName))
             }
             Text(group.groupName).fixedSize(horizontal: false, vertical: true).multilineTextAlignment(.center)
         }

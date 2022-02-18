@@ -10,6 +10,12 @@ import QGrid
 
 struct FriendsImageCollectionView: View {
     
+    @ObservedObject var viewModel: FriendsViewModel
+    
+    init(viewModel: FriendsViewModel) {
+        self.viewModel = viewModel
+    }
+    
     @State private var images = [
     ImageItem(name: "1"),
     ImageItem(name: "2"),
@@ -21,7 +27,8 @@ struct FriendsImageCollectionView: View {
     var body: some View {
         QGrid(images, columns: 3) {
             FriendImage(image: $0)
-        }
+        }.onAppear(perform: viewModel.fetchFriends)
+            .navigationBarTitle(viewModel.friend.fullName)
     }
 }
 

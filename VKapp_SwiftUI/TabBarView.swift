@@ -8,11 +8,14 @@
 import SwiftUI
 
 struct TabBarView: View {
+    
+    let friend = FriendModel()
+    let friendsApi = FriendsAPI()
     @State private var selection = 3
     
     var body: some View {
         TabView(selection: $selection) {
-            FriendsView().tabItem {
+            FriendsView(viewModel: FriendsViewModel(friend: friend, friendService: self.friendsApi)).tabItem {
                 Text("Friends")
             }
             GroupsView().tabItem {

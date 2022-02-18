@@ -43,6 +43,7 @@ struct VKLoginWebView: UIViewRepresentable {
 }
 
 class WebViewNavigationDelegate: NSObject, WKNavigationDelegate {
+    
 
     func webView(_ webView: WKWebView, decidePolicyFor navigationResponse: WKNavigationResponse, decisionHandler: @escaping (WKNavigationResponsePolicy) -> Void) {
         guard let url = navigationResponse.response.url,
@@ -74,6 +75,7 @@ class WebViewNavigationDelegate: NSObject, WKNavigationDelegate {
         
         Account.shared.token = token
         Account.shared.userId = Int(userIdString) ?? 0
+        
         NotificationCenter.default.post(name: NSNotification.Name("vkTokenSaved"), object: self)
         
         decisionHandler(.cancel)

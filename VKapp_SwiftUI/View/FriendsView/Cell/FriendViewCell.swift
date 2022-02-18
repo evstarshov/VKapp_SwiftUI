@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-
+import Kingfisher
 
 struct FriendViewCell: View {
     
@@ -15,10 +15,10 @@ struct FriendViewCell: View {
     var body: some View {
 
         HStack {
-            ImageBuilder{ Image(friend.imageName)
+            ImageBuilder{
+                KFImage(URL(string: friend.photo100))
             }
-            Text(friend.firstName).fixedSize(horizontal: false, vertical: true).multilineTextAlignment(.center)
-            Text(friend.lastName).fixedSize(horizontal: false, vertical: true).multilineTextAlignment(.center)
+            Text(friend.fullName).fixedSize(horizontal: false, vertical: true).multilineTextAlignment(.center)
         }
         
     }
