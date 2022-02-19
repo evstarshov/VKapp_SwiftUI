@@ -10,12 +10,10 @@ import SwiftUI
 
 class FriendsViewModel: ObservableObject {
     
-    let friend: FriendModel
     let friendService: FriendsAPI
     @Published var friends: [FriendModel] = []
     
-    init(friend: FriendModel, friendService: FriendsAPI) {
-        self.friend = friend
+    init(friendService: FriendsAPI) {
         self.friendService = friendService
     }
     

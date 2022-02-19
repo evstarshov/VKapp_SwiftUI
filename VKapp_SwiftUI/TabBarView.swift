@@ -9,31 +9,26 @@ import SwiftUI
 
 struct TabBarView: View {
     
-    let friend = FriendModel()
+    
     let friendsApi = FriendsAPI()
-    let group = GroupModel()
     let groupsApi = GroupsAPI()
+    let newsApi = NewsAPI()
+    
     
     @State private var selection = 3
     
     var body: some View {
         TabView(selection: $selection) {
-            FriendsView(viewModel: FriendsViewModel(friend: friend, friendService: self.friendsApi)).tabItem {
+            FriendsView(viewModel: FriendsViewModel(friendService: self.friendsApi)).tabItem {
                 Text("Friends")
             }
-            GroupsView(viewModel: GroupsViewModel(group: group, groupsService: groupsApi)).tabItem {
+            GroupsView(viewModel: GroupsViewModel(groupsService: self.groupsApi)).tabItem {
                 Text("Groups")
             }
-            NewsView().tabItem {
+            NewsView(viewModel: NewsViewModel(newsService: self.newsApi)).tabItem {
                 Text("News")
             }
         }
     }
 }
 
-
-struct TabBarView_Previews: PreviewProvider {
-    static var previews: some View {
-        TabBarView()
-    }
-}

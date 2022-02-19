@@ -11,7 +11,9 @@ import Foundation
 
 
 // MARK: - Welcome
-class NewsJSON: Codable {
+class NewsJSON: Codable, Identifiable {
+    
+    var id = UUID()
     let response: NewsResponse
 
     init(response: NewsResponse) {
@@ -41,10 +43,10 @@ class NewsResponse: Codable {
 
 // MARK: - Group
 class NewsGroup: Codable {
-    let id: Int
-    let photo100, photo50, photo200: String
-    let type, screenName, name: String
-    let isClosed: Int
+    let id: Int?
+    let photo100, photo50, photo200: String?
+    let type, screenName, name: String?
+    let isClosed: Int?
 
     enum CodingKeys: String, CodingKey {
         case id
@@ -70,19 +72,21 @@ class NewsGroup: Codable {
 }
 
 // MARK: - Item
-class NewsItem: Codable {
-    let comments: Comments
+class NewsItem: Codable, Identifiable {
+    
+    let id: Int = 0
+    let comments: Comments?
     let canSetCategory: Bool?
-    let likes: NewsLikes
-    let reposts: NewsReposts
-    let type, postType: String
-    let date, sourceID: Int
-    let text: String
+    let likes: NewsLikes?
+    let reposts: NewsReposts?
+    let type, postType: String?
+    let date, sourceID: Int?
+    let text: String?
     let canDoubtCategory: Bool?
     let attachments: [Attachment]?
     let markedAsAds: Int?
-    let postID: Int
-    let postSource: PostSource
+    let postID: Int?
+    let postSource: PostSource?
     let views: Views?
 
     enum CodingKeys: String, CodingKey {
@@ -122,7 +126,7 @@ class NewsItem: Codable {
 
 // MARK: - Attachment
 class Attachment: Codable {
-    let type: String
+    let type: String?
     let link: NewsLink?
     let photo: NewsPhoto?
 
@@ -135,10 +139,10 @@ class Attachment: Codable {
 
 // MARK: - Link
 class NewsLink: Codable {
-    let title: String
+    let title: String?
     let caption: String?
-    let url: String
-    let linkDescription: String
+    let url: String?
+    let linkDescription: String?
     let photo: NewsPhoto?
 
     enum CodingKeys: String, CodingKey {
@@ -158,12 +162,12 @@ class NewsLink: Codable {
 
 // MARK: - Photo
 class NewsPhoto: Codable {
-    let albumID, id, date: Int
-    let text: String
+    let albumID, id, date: Int?
+    let text: String?
     let userID: Int?
     let sizes: [Size]?
     let hasTags: Bool?
-    let ownerID: Int
+    let ownerID: Int?
     
     var photoAvailable: Size? {
         
@@ -202,9 +206,9 @@ class NewsPhoto: Codable {
 
 // MARK: - Size
 class Size: Codable {
-    let width, height: Int
-    let url: String
-    let type: String
+    let width, height: Int?
+    let url: String?
+    let type: String?
 
     init(width: Int, height: Int, url: String, type: String) {
         self.width = width
@@ -216,7 +220,7 @@ class Size: Codable {
 
 // MARK: - Comments
 class Comments: Codable {
-    let count, canPost: Int
+    let count, canPost: Int?
 
     enum CodingKeys: String, CodingKey {
         case count
@@ -231,7 +235,7 @@ class Comments: Codable {
 
 // MARK: - Likes
 class NewsLikes: Codable {
-    let canLike, canPublish, count, userLikes: Int
+    let canLike, canPublish, count, userLikes: Int?
 
     enum CodingKeys: String, CodingKey {
         case canLike = "can_like"
@@ -250,7 +254,7 @@ class NewsLikes: Codable {
 
 // MARK: - PostSource
 class PostSource: Codable {
-    let type: String
+    let type: String?
 
     init(type: String) {
         self.type = type
@@ -259,7 +263,7 @@ class PostSource: Codable {
 
 // MARK: - Reposts
 class NewsReposts: Codable {
-    let count, userReposted: Int
+    let count, userReposted: Int?
 
     enum CodingKeys: String, CodingKey {
         case count
@@ -274,7 +278,7 @@ class NewsReposts: Codable {
 
 // MARK: - Views
 class Views: Codable {
-    let count: Int
+    let count: Int?
 
     init(count: Int) {
         self.count = count
@@ -283,14 +287,14 @@ class Views: Codable {
 
 // MARK: - Profile
 class NewsProfile: Codable {
-    let online, id: Int
-    let photo100: String
-    let lastName: String
-    let photo50: String
-    let onlineInfo: OnlineInfo
-    let sex: Int
+    let online, id: Int?
+    let photo100: String?
+    let lastName: String?
+    let photo50: String?
+    let onlineInfo: OnlineInfo?
+    let sex: Int?
     let screenName: String?
-    let firstName: String
+    let firstName: String?
 
     enum CodingKeys: String, CodingKey {
         case online, id
@@ -318,7 +322,7 @@ class NewsProfile: Codable {
 
 // MARK: - OnlineInfo
 class OnlineInfo: Codable {
-    let visible, isMobile, isOnline: Bool
+    let visible, isMobile, isOnline: Bool?
 
     enum CodingKeys: String, CodingKey {
         case visible

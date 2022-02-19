@@ -7,8 +7,8 @@
 
 
 import Foundation
-import Alamofire
 import SwiftyJSON
+import Alamofire
 
 final class NewsAPI {
     
@@ -65,6 +65,7 @@ final class NewsAPI {
                 for (index, items) in vkItemsJSON.enumerated() {
                     do {
                         let decodedItem = try decoder.decode(NewsItem.self, from: items.rawData())
+                        print("appending items")
                         vkItemsArr.append(decodedItem)
                     } catch (let errorDecode) {
                         print("Item decoding error at index \(index), err: \(errorDecode)")
@@ -76,6 +77,7 @@ final class NewsAPI {
                 for (index, profiles) in vkProfilesJSON.enumerated() {
                     do {
                         let decodedProfile = try decoder.decode(NewsProfile.self, from: profiles.rawData())
+                        print("appending profiles")
                         vkProfilesArr.append(decodedProfile)
                     } catch (let errorDecode) {
                         print("Profile decoding error at index \(index), err: \(errorDecode)")
@@ -87,6 +89,7 @@ final class NewsAPI {
                 for (index, groups) in vkGroupsJSON.enumerated() {
                     do {
                         let decodedGroups = try decoder.decode(NewsGroup.self, from: groups.rawData())
+                        print("appending groups")
                         vkGroupsArr.append(decodedGroups)
                     } catch (let errorDecode) {
                         print("Group decoding error at index \(index), err: \(errorDecode)")
@@ -97,6 +100,7 @@ final class NewsAPI {
             dispatchGroup.notify(queue: DispatchQueue.main) {
                 let response = NewsResponse(items: vkItemsArr, groups: vkGroupsArr, profiles: vkProfilesArr, nextFrom: nextFrom)
                 let feed = NewsJSON(response: response)
+                print("preparing complition")
                 completion(feed)
             }
         }

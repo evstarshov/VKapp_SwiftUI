@@ -10,13 +10,12 @@ import SwiftUI
 
 class GroupsViewModel: ObservableObject {
     
-    let group: GroupModel
+    
     let groupsService: GroupsAPI
     
     @Published var groups: [GroupModel] = []
     
-    init(group: GroupModel, groupsService: GroupsAPI) {
-        self.group = group
+    init(groupsService: GroupsAPI) {
         self.groupsService = groupsService
     }
     
