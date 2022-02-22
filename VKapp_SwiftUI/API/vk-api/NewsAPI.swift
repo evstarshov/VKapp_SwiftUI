@@ -25,12 +25,12 @@ final class NewsAPI {
             "access_token": session.token,
             "v": session.version,
             "filters": "post",
-            "count": "10",
+            "count": "100",
         ]
     }
 
     
-    func getNews(startTime: Int? = nil, startFrom: String? = nil, _ completion: @escaping (NewsJSON?) -> ()) {
+    func getNews(startTime: Int? = nil, startFrom: String? = nil, _ completion: @escaping ([NewsModel]) -> ()) {
         
 
         
@@ -47,6 +47,7 @@ final class NewsAPI {
         AF.request(url, method: .get, parameters: parametrs).responseData { response in
             
             guard let data = response.data else {return}
+            print(String(decoding: response.data!, as: UTF8.self))
             
             let decoder = JSONDecoder()
             let json = JSON(data)
@@ -60,6 +61,7 @@ final class NewsAPI {
             var vkItemsArr: [NewsItem] = []
             var vkProfilesArr: [NewsProfile] = []
             var vkGroupsArr: [NewsGroup] = []
+            var newsModelArr: [NewsModel] = []
             
             DispatchQueue.global().async(group: dispatchGroup) {
                 for (index, items) in vkItemsJSON.enumerated() {
@@ -97,11 +99,36 @@ final class NewsAPI {
                 }
             }
             
+            DispatchQueue.global().async(group: dispatchGroup) {
+                for (index, items) in vkItemsJSON.enumerated() {
+                    do {
+                        guard let decodedNews = try? decoder.decode(NewsModel.self, from: items.rawData()) else { return }
+                        print("appending news model")
+                        newsModelArr.append(decodedNews)
+                        
+                        for i in 0..<newsModelArr.count {
+                            if newsModelArr[i].sourceID < 0 {
+                                let group = vkGroupsArr.first(where: { $0.id == -newsModelArr[i].sourceID})
+                                newsModelArr[i].avatarURL = group?.photo100
+                                newsModelArr[i].creatorName = group?.name
+                            } else {
+                                let profile = vkProfilesArr.first(where: { $0.id == newsModelArr[i].sourceID })
+                                newsModelArr[i].avatarURL = profile?.photo100
+                                newsModelArr[i].creatorName = profile?.firstName ?? "" + " " + (profile?.lastName)!
+                            }
+                        }
+                        
+                        
+                    } catch (let errorDecode) {
+                        print("News decoding error at index \(index), err: \(errorDecode)")
+                    }
+                }
+            }
+            
             dispatchGroup.notify(queue: DispatchQueue.main) {
-                let response = NewsResponse(items: vkItemsArr, groups: vkGroupsArr, profiles: vkProfilesArr, nextFrom: nextFrom)
-                let feed = NewsJSON(response: response)
+                let news = newsModelArr
                 print("preparing complition")
-                completion(feed)
+                completion(news)
             }
         }
         

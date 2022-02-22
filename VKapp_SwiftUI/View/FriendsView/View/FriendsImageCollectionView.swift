@@ -32,18 +32,24 @@ import QGrid
 //    }
 //}
 
-struct FriendImage: View {
-    let image: ImageItem
+//struct FriendImage: View {
+//    let image: ImageItem
+//    var body: some View {
+//        Image(image.name)
+//            .resizable()
+//            .frame(width: 100, height: 100, alignment: .leading)
+//            .padding()
+//    }
+//}
+
+
+struct ImageItem: Identifiable, View {
+   let id: UUID = UUID()
+   let name: String
     var body: some View {
-        Image(image.name)
+        Image(name)
             .resizable()
             .frame(width: 100, height: 100, alignment: .leading)
             .padding()
     }
-}
-
-
-struct ImageItem: Identifiable {
-   let id: UUID = UUID()
-   let name: String
 }

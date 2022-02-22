@@ -23,6 +23,8 @@ class NewsJSON: Codable, Identifiable {
 
 // MARK: - Response
 class NewsResponse: Codable {
+    
+    let id = UUID()
     let items: [NewsItem]
     let groups: [NewsGroup]
     let profiles: [NewsProfile]
@@ -42,8 +44,10 @@ class NewsResponse: Codable {
 }
 
 // MARK: - Group
-class NewsGroup: Codable {
-    let id: Int?
+class NewsGroup: Codable, Identifiable {
+    
+    
+    let id: Int
     let photo100, photo50, photo200: String?
     let type, screenName, name: String?
     let isClosed: Int?
@@ -80,7 +84,7 @@ class NewsItem: Codable, Identifiable {
     let likes: NewsLikes?
     let reposts: NewsReposts?
     let type, postType: String?
-    let date, sourceID: Int?
+    let date, sourceID: Int
     let text: String?
     let canDoubtCategory: Bool?
     let attachments: [Attachment]?
@@ -336,3 +340,54 @@ class OnlineInfo: Codable {
         self.isOnline = isOnline
     }
 }
+
+class NewsModel: Codable, Identifiable {
+    let postID: Int
+    let text: String
+    let date: Double
+    let attachments: [Attachment]?
+    let likes: LikeModel
+    let sourceID: Int
+    let views: ViewsModel
+    var avatarURL: String?
+    var creatorName: String?
+    var photosURL: [String]? {
+        get {
+            let photosURL = attachments?.compactMap{ $0.photo?.sizes?.last?.url }
+            return photosURL
+        }
+    }
+    
+    enum CodingKeys: String, CodingKey {
+        case postID = "post_id"
+        case text
+        case date
+        case likes
+        case attachments
+        case sourceID = "source_id"
+        case avatarURL
+        case views
+        case creatorName
+    }
+    
+    func getDate() -> String {
+        let dateFormatter = MyDateFormatter()
+        return dateFormatter.convertDate(timeIntervalSince1970: date)
+    }
+}
+
+class ViewsModel: Codable {
+    let count: Int
+}
+
+
+class LikeModel: Codable {
+    let count: Int
+    let userLike: Int
+    
+    enum CodingKeys: String, CodingKey {
+        case count
+        case userLike = "user_likes"
+    }
+}
+

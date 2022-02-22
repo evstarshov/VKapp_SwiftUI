@@ -17,7 +17,7 @@ struct ContainerView: View {
                 VKLoginWebView()
                 NavigationLink(destination: TabBarView(), isActive: $shouldShowMainView) {
                     EmptyView()
-                }
+                }.foregroundColor(.white)
             }
         }
     }

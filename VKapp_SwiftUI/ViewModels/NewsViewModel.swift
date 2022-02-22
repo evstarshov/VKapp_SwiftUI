@@ -12,44 +12,17 @@ class NewsViewModel: ObservableObject {
     
 
     let newsService: NewsAPI
-    @Published var newsFeed: NewsJSON?
-    @Published var nextFrom = ""
-    @Published var newsItems: [NewsItem] = []
-    @Published var newsGroups: [NewsGroup] = []
-    @Published var newsProfiles: [NewsProfile] = []
+    @Published var newsFeed: [NewsModel] = []
+
     
     init(newsService: NewsAPI) {
         self.newsService = newsService
     }
     
     public func fetchNews() {
-        newsService.getNews { feed in
-            
+        newsService.getNews { [weak self] feed in
             print("Getting news to viewmodel")
-            self.newsFeed = feed!
-            self.newsItems = feed!.response.items
-            self.newsGroups = feed!.response.groups
-            self.newsProfiles = feed!.response.profiles
-            self.nextFrom = feed!.response.nextFrom
+           self?.newsFeed = feed
         }
     }
 }
-
-
-//class NewsResponseViewModel: ObservableObject {
-//    
-//    let news: NewsJSON
-//    let newsService: NewsAPI
-//    @Published var newsResponse: [NewsJSON] = []
-//    
-//    init(news: NewsJSON, newsService: NewsAPI) {
-//        self.news = news
-//        self.newsService = newsService
-//    }
-//    
-//    public func fetchNewsResponse() {
-//        newsService.getNews { [weak self] news in
-//            self?.newsResponse = news
-//        }
-//    }
-//}

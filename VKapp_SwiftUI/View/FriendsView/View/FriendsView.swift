@@ -21,7 +21,7 @@ struct FriendsView: View {
         List(viewModel.friends) { friend in
             FriendViewCell(friend: friend)
         }.onAppear(perform: viewModel.fetchFriends)
-        .navigationBarTitle("Friends", displayMode: .inline)
+        
     }
 }
 

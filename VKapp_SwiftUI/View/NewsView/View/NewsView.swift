@@ -17,7 +17,7 @@ struct NewsView: View {
     
     var body: some View {
          
-        List(viewModel.newsItems) { news in
+        List(viewModel.newsFeed) { news in
                 
             NewsViewCell(newsItem: news)
                 

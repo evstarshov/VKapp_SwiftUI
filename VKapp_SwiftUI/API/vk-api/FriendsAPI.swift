@@ -34,7 +34,6 @@ final class FriendsAPI {
         AF.request(url, method: .get, parameters: parameters).responseJSON { response in
 
             guard let data = response.data else { return }
-            debugPrint(response.data as Any)
             
             do {
                 
