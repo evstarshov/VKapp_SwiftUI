@@ -9,15 +9,17 @@ import SwiftUI
 
 struct ContainerView: View {
     
-    @State private var shouldShowMainView: Bool = true
+    @ObservedObject var shouldShowMainView = Account.shared
     
     var body: some View {
         NavigationView {
             HStack {
                 VKLoginWebView()
-                NavigationLink(destination: TabBarView(), isActive: $shouldShowMainView) {
+                NavigationLink(destination: TabBarView(), isActive: $shouldShowMainView.isLoggedIn) {
                     EmptyView()
                 }.foregroundColor(.white)
+                    .navigationBarTitleDisplayMode(.inline)
+                
             }
         }
     }

@@ -25,7 +25,7 @@ final class NewsAPI {
             "access_token": session.token,
             "v": session.version,
             "filters": "post",
-            "count": "100",
+            "count": "25",
         ]
     }
 
@@ -47,7 +47,6 @@ final class NewsAPI {
         AF.request(url, method: .get, parameters: parametrs).responseData { response in
             
             guard let data = response.data else {return}
-            print(String(decoding: response.data!, as: UTF8.self))
             
             let decoder = JSONDecoder()
             let json = JSON(data)
@@ -67,7 +66,6 @@ final class NewsAPI {
                 for (index, items) in vkItemsJSON.enumerated() {
                     do {
                         let decodedItem = try decoder.decode(NewsItem.self, from: items.rawData())
-                        print("appending items")
                         vkItemsArr.append(decodedItem)
                     } catch (let errorDecode) {
                         print("Item decoding error at index \(index), err: \(errorDecode)")
@@ -79,7 +77,6 @@ final class NewsAPI {
                 for (index, profiles) in vkProfilesJSON.enumerated() {
                     do {
                         let decodedProfile = try decoder.decode(NewsProfile.self, from: profiles.rawData())
-                        print("appending profiles")
                         vkProfilesArr.append(decodedProfile)
                     } catch (let errorDecode) {
                         print("Profile decoding error at index \(index), err: \(errorDecode)")
@@ -91,7 +88,6 @@ final class NewsAPI {
                 for (index, groups) in vkGroupsJSON.enumerated() {
                     do {
                         let decodedGroups = try decoder.decode(NewsGroup.self, from: groups.rawData())
-                        print("appending groups")
                         vkGroupsArr.append(decodedGroups)
                     } catch (let errorDecode) {
                         print("Group decoding error at index \(index), err: \(errorDecode)")
@@ -103,7 +99,6 @@ final class NewsAPI {
                 for (index, items) in vkItemsJSON.enumerated() {
                     do {
                         guard let decodedNews = try? decoder.decode(NewsModel.self, from: items.rawData()) else { return }
-                        print("appending news model")
                         newsModelArr.append(decodedNews)
                         
                         for i in 0..<newsModelArr.count {

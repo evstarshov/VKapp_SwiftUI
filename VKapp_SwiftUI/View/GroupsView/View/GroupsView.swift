@@ -20,7 +20,8 @@ struct GroupsView: View {
         List(viewModel.groups) { group in
             GroupsViewCell(group: group)
         }.onAppear(perform: viewModel.fetchGroups)
-        //.navigationBarTitle("Groups", displayMode: .inline)
+            
+            .navigationTitle("Groups")
     }
 }
 

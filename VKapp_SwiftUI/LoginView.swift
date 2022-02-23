@@ -75,7 +75,8 @@ class WebViewNavigationDelegate: NSObject, WKNavigationDelegate {
         }
         
         Account.shared.token = token
-        Account.shared.userId = Int(userIdString) ?? 0
+        Account.shared.userId = userIdString
+        Account.shared.isLoggedIn = true
         
         NotificationCenter.default.post(name: NSNotification.Name("vkTokenSaved"), object: self)
         
