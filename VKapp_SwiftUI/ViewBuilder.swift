@@ -6,18 +6,19 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 struct ImageBuilder: View {
-    var content: Image
+    var content: KFImage
     
-    init(@ViewBuilder content: () -> Image) {
+    init(@ViewBuilder content: () -> KFImage) {
         self.content = content()
     }
 
     var body: some View {
         content
             .resizable()
-            .frame(width: 45, height: 45)
+            .frame(width: 45, height: 45, alignment: .leading)
             .modifier(CircleShadow())
     }
 }
