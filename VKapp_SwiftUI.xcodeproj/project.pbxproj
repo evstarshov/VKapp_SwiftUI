@@ -17,6 +17,7 @@
 		3A4C61FA27AFD5AF004C9527 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A4C61F927AFD5AF004C9527 /* LoginView.swift */; };
 		3A4C61FC27AFD5AF004C9527 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3A4C61FB27AFD5AF004C9527 /* Assets.xcassets */; };
 		3A4C61FF27AFD5AF004C9527 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3A4C61FE27AFD5AF004C9527 /* Preview Assets.xcassets */; };
+		3A6B3A5627C63E5F00642EB2 /* CodingStylePropertyWrapper in Frameworks */ = {isa = PBXBuildFile; productRef = 3A6B3A5527C63E5F00642EB2 /* CodingStylePropertyWrapper */; };
 		3A92669127BA4E9F00F1CDDF /* ContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A92669027BA4E9F00F1CDDF /* ContainerView.swift */; };
 		3A92669427BA546800F1CDDF /* FriendModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A92669327BA546800F1CDDF /* FriendModel.swift */; };
 		3A92669627BA583200F1CDDF /* FriendViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A92669527BA583200F1CDDF /* FriendViewCell.swift */; };
@@ -86,6 +87,7 @@
 				3A2918DA27BF889D007758A7 /* Alamofire in Frameworks */,
 				3A2918D327BF8158007758A7 /* SwiftKeychainWrapper in Frameworks */,
 				3A2918DD27BF899D007758A7 /* Realm in Frameworks */,
+				3A6B3A5627C63E5F00642EB2 /* CodingStylePropertyWrapper in Frameworks */,
 				3A2918DF27BF899D007758A7 /* RealmSwift in Frameworks */,
 				3A9266AC27BAA2CF00F1CDDF /* QGrid in Frameworks */,
 			);
@@ -313,6 +315,7 @@
 				3A2918DE27BF899D007758A7 /* RealmSwift */,
 				3AF9A83F27BFAA4700AAE9BA /* Kingfisher */,
 				3AF9A84C27BFBE4100AAE9BA /* SwiftyJSON */,
+				3A6B3A5527C63E5F00642EB2 /* CodingStylePropertyWrapper */,
 			);
 			productName = VKapp_SwiftUI;
 			productReference = 3A4C61F427AFD5AF004C9527 /* VKapp_SwiftUI.app */;
@@ -349,6 +352,7 @@
 				3A2918DB27BF899D007758A7 /* XCRemoteSwiftPackageReference "realm-swift" */,
 				3AF9A83E27BFAA4700AAE9BA /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				3AF9A84B27BFBE4100AAE9BA /* XCRemoteSwiftPackageReference "SwiftyJSON" */,
+				3A6B3A5427C63E5F00642EB2 /* XCRemoteSwiftPackageReference "CodingStylePropertyWrapper" */,
 			);
 			productRefGroup = 3A4C61F527AFD5AF004C9527 /* Products */;
 			projectDirPath = "";
@@ -630,6 +634,14 @@
 				kind = branch;
 			};
 		};
+		3A6B3A5427C63E5F00642EB2 /* XCRemoteSwiftPackageReference "CodingStylePropertyWrapper" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/evstarshov/CodingStylePropertyWrapper";
+			requirement = {
+				branch = dev;
+				kind = branch;
+			};
+		};
 		3A9266AA27BAA2CF00F1CDDF /* XCRemoteSwiftPackageReference "QGrid" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Q-Mobile/QGrid";
@@ -676,6 +688,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 3A2918DB27BF899D007758A7 /* XCRemoteSwiftPackageReference "realm-swift" */;
 			productName = RealmSwift;
+		};
+		3A6B3A5527C63E5F00642EB2 /* CodingStylePropertyWrapper */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3A6B3A5427C63E5F00642EB2 /* XCRemoteSwiftPackageReference "CodingStylePropertyWrapper" */;
+			productName = CodingStylePropertyWrapper;
 		};
 		3A9266AB27BAA2CF00F1CDDF /* QGrid */ = {
 			isa = XCSwiftPackageProductDependency;

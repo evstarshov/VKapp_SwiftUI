@@ -20,5 +20,6 @@ struct ImageBuilder: View {
             .resizable()
             .frame(width: 45, height: 45, alignment: .leading)
             .modifier(CircleShadow())
+            .modifier(AvatarTapAnimationModifier())
     }
 }
