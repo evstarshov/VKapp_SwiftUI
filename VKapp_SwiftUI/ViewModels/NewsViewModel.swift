@@ -26,3 +26,4 @@ class NewsViewModel: ObservableObject {
         }
     }
 }
+

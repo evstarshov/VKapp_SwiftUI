@@ -172,7 +172,6 @@
 				3A92669327BA546800F1CDDF /* FriendModel.swift */,
 				3A9266A127BA616800F1CDDF /* GroupModel.swift */,
 				3AF9A84627BFBD2B00AAE9BA /* NewsModel.swift */,
-				3AF9A85627C4EDA400AAE9BA /* LikeViewModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -271,6 +270,7 @@
 				3AF9A83C27BF962600AAE9BA /* FriendsViewModel.swift */,
 				3AF9A84227BFB7E300AAE9BA /* GroupViewModel.swift */,
 				3AF9A85127BFBF7600AAE9BA /* NewsViewModel.swift */,
+				3AF9A85627C4EDA400AAE9BA /* LikeViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";

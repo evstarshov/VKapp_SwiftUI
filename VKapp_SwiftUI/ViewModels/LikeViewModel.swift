@@ -32,4 +32,20 @@ class LikeViewModel: ObservableObject {
             self.isLiked = true
         }
     }
+    
+    func toggleLike() {
+        isLiked.toggle()
+       
+        if isLiked {
+            countLike += 1
+            networkService.addLike(type: self.type,
+                                   ownerId: self.ownerId,
+                                   itemId: self.itemId)
+        } else {
+            countLike -= 1
+            networkService.deleteLike(type: self.type,
+                                      ownerId: self.ownerId,
+                                      itemId: self.itemId)
+        }
+    }
 }

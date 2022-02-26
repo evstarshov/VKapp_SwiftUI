@@ -51,8 +51,8 @@ struct NewsViewCell: View {
     private func gridView() -> some View {
         var images: [NewsImage] = []
         if let urls = newsItem.photosURL {
-        for i in 0..<urls.count {
-            images.append(NewsImage(nameUrl: newsItem.photosURL?[i] ?? ""))
+            for i in 0..<urls.count {
+                images.append(NewsImage(nameUrl: newsItem.photosURL?[i] ?? ""))
             }
         }
         let grid = QGrid(images, columns: 3,
@@ -64,7 +64,7 @@ struct NewsViewCell: View {
         ) {
             NewsImageCell(nameUrl: $0.nameUrl)
         }.scaledToFill()
-            return grid
+        return grid
         
     }
 }
@@ -131,6 +131,15 @@ struct LikeView: View {
             Image(systemName: self.nameHeart)
                 .foregroundColor(self.viewModel.isLiked ? .red : .none)
                 .opacity(self.opacity)
+        }.onTapGesture {
+            
+            self.viewModel.toggleLike()
+            self.opacity = 0.5
+            withAnimation(.linear(duration: 1)) {
+                self.opacity = 1
+                self.degress = 360
+            }
+            self.degress = 0
         }
     }
 }
