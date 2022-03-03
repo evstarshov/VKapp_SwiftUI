@@ -11,13 +11,9 @@ import SwiftUI
 class GroupsViewModel: ObservableObject {
     
     
-    let groupsService: GroupsAPI
+    private let groupsService = GroupsAPI()
     
     @Published var groups: [GroupModel] = []
-    
-    init(groupsService: GroupsAPI) {
-        self.groupsService = groupsService
-    }
     
     public func fetchGroups() {
         groupsService.getGroups { [weak self] groups in

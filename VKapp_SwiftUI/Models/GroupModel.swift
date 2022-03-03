@@ -26,7 +26,7 @@ struct GroupsResponse: Codable {
 // MARK: - Item
 class GroupModel: Object, Codable, Identifiable {
     @objc dynamic var id, isClosed, isAdvertiser: Int
-    let type: TypeEnum
+    //let type: TypeEnum?
     let adminLevel: Int?
     @objc dynamic var isMember: Int
     let city: City?
@@ -39,7 +39,7 @@ class GroupModel: Object, Codable, Identifiable {
         case id
         case isClosed = "is_closed"
         case isAdvertiser = "is_advertiser"
-        case type
+        //case type
         case adminLevel = "admin_level"
         case isMember = "is_member"
         case city

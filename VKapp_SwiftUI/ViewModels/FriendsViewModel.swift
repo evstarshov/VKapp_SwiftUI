@@ -10,12 +10,8 @@ import SwiftUI
 
 class FriendsViewModel: ObservableObject {
     
-    let friendService: FriendsAPI
+    private let friendService = FriendsAPI()
     @Published var friends: [FriendModel] = []
-    
-    init(friendService: FriendsAPI) {
-        self.friendService = friendService
-    }
     
     public func fetchFriends() {
         friendService.getFriends { [weak self] friends in

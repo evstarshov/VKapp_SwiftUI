@@ -22,7 +22,12 @@ struct NewsView: View {
             NewsViewCell(newsItem: news)
                 
             
-        }.onAppear(perform: viewModel.fetchNews)
+        }
+        .navigationTitle("\(Tabs.news.rawValue)")
+        .onAppear {
+            viewModel.fetchNews()
+            UITableView.appearance().backgroundColor = .clear
+        }
     }
 }
 

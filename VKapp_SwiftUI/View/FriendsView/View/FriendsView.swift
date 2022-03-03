@@ -20,7 +20,11 @@ struct FriendsView: View {
         
         List(viewModel.friends) { friend in
             FriendViewCell(friend: friend)
-        }.onAppear(perform: viewModel.fetchFriends)
+        }
+        .navigationTitle("\(Tabs.friends.rawValue)")
+        .onAppear { viewModel.fetchFriends()
+            UITableView.appearance().backgroundColor = .clear
+        }
     }
 }
 

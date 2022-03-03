@@ -11,13 +11,9 @@ import SwiftUI
 class NewsViewModel: ObservableObject {
     
 
-    let newsService: NewsAPI
+    private let newsService = NewsAPI()
     @Published var newsFeed: [NewsModel] = []
 
-    
-    init(newsService: NewsAPI) {
-        self.newsService = newsService
-    }
     
     public func fetchNews() {
         newsService.getNews { [weak self] feed in

@@ -35,10 +35,15 @@ final class FriendsAPI {
 
             guard let data = response.data else { return }
             
+            print(Account.shared.token)
+            print(String(decoding: response.data!, as: UTF8.self))
+            
             do {
                 
                 let friendsJSON = try JSONDecoder().decode(FriendsJSON.self, from: data)
                 let friends: [FriendModel] = friendsJSON.response.items
+                
+                print("Getting friends")
                 completion(friends)
                 
             } catch {

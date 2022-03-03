@@ -19,9 +19,12 @@ struct GroupsView: View {
         
         List(viewModel.groups) { group in
             GroupsViewCell(group: group)
-        }.onAppear(perform: viewModel.fetchGroups)
-            
-            .navigationTitle("Groups")
+        }
+        .navigationTitle("\(Tabs.groups.rawValue)")
+        .onAppear {
+            viewModel.fetchGroups()
+            UITableView.appearance().backgroundColor = .clear
+        }
     }
 }
 
