@@ -131,7 +131,9 @@ struct LikeView: View {
             Image(systemName: self.nameHeart)
                 .foregroundColor(self.viewModel.isLiked ? .red : .none)
                 .opacity(self.opacity)
-        }.onTapGesture {
+        }
+        .padding()
+        .onTapGesture {
             
             self.viewModel.toggleLike()
             self.opacity = 0.5

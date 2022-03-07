@@ -31,12 +31,13 @@ final class GroupsAPI {
         AF.request(url, method: .get, parameters: parameters).responseJSON { response in
             
             guard let data = response.data else { return }
-            print(String(decoding: response.data!, as: UTF8.self))
+            //print(String(decoding: response.data!, as: UTF8.self))
             
             do {
                 
                 let GroupsJSON = try JSONDecoder().decode(GroupsJSON.self, from: data)
                 let mygroups: [GroupModel] = GroupsJSON.response.items
+                print("Getting groups")
                 completion(mygroups)
                 
             } catch {
