@@ -19,7 +19,7 @@ struct FriendsView: View {
     var body: some View {
         
         List(viewModel.friends) { friend in
-            FriendViewCell(friend: friend)
+            NavigationLink(destination: FriendPhotoGalleryView(viewModel: PhotoGalleryViewModel(userID: friend.id)), label: { FriendViewCell(friend: friend) })
         }
         .navigationTitle("\(Tabs.friends.rawValue)")
         .onAppear { viewModel.fetchFriends()
